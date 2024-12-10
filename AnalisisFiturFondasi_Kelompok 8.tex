@@ -1,0 +1,317 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{parskip} % Mengatur jarak antar paragraf tanpa indentasi
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{listings} % Untuk menampilkan kode
+\usepackage{xcolor} % Untuk pewarnaan kode
+\usepackage{tikz} % Untuk menggambar diagram
+\usepackage{pdflscape} % Untuk orientasi landscape pada halaman tertentu
+
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric}
+
+% Pengaturan halaman
+\geometry{a4paper, margin=1in}
+
+% Pengaturan format judul
+\titleformat{\section}{\bfseries\Large}{\thesection.}{1em}{}
+\titleformat{\subsection}{\bfseries\large}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\bfseries\normalsize}{\thesubsubsection.}{1em}{}
+
+% Definisi bahasa C# untuk listings
+\lstdefinelanguage{CSharp}{
+    language=C,
+    morekeywords={abstract, as, base, bool, break, byte, case, catch, char, checked, class, const, continue, decimal, default, delegate, do, double, else, enum, event, explicit, extern, false, finally, fixed, float, for, foreach, goto, if, implicit, in, int, interface, internal, is, lock, long, namespace, new, null, object, operator, out, override, params, private, protected, public, readonly, ref, return, sbyte, sealed, short, sizeof, stackalloc, static, string, struct, switch, this, throw, true, try, typeof, uint, ulong, unchecked, unsafe, ushort, using, virtual, void, volatile, while},
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+}
+
+% Pengaturan tampilan kode
+\lstset{
+    language=CSharp,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    breaklines=true,
+    frame=single,
+    captionpos=b
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    % Logo UI (Opsional)
+    \includegraphics[width=4cm]{Logo Makara.png} % [Ganti dengan path logo Anda jika diperlukan]
+    \vspace{1cm}
+    
+    \centering
+    \vspace*{1cm}
+
+    \Huge \textbf{UNIVERSITAS INDONESIA} \\
+    \vspace{0.5cm}
+    \LARGE \textbf{Analisis Laporan Fitur Fondasi} \\
+    \Huge \textbf{Journey to the Forgotten} \\
+    
+    \vspace{2cm}
+
+    \Large
+    Disusun Oleh : \\
+    \vspace{0.5 cm}
+    Aisya Rivelia Azzahra (2306161864) \\
+    \vspace{0.5 cm}
+    Fido Wahyu Choirulinsan (2306250674) \\
+    \vspace{0.5 cm}
+    Maharaka Fadhilah (2306225520) \\
+    \vspace{0.5 cm}
+    Stevie Nathania Siregar (2306242382) \\
+    \vspace{0.5 cm}
+    
+    \vfill
+
+    \LARGE
+    \textbf{Fakultas Teknik} \\
+    \textbf{Teknik Komputer} \\
+    \textbf{2024} \\
+\end{titlepage}
+
+\section{Pendahuluan}
+\textbf{Tujuan Analisis:} Analisis ini bertujuan untuk mengevaluasi implementasi fitur-fitur fondasi dalam laporan proyek RPG Command Line Adventure. Evaluasi ini akan mengidentifikasi kekuatan dan kelemahan masing-masing fitur serta memberikan rekomendasi untuk perbaikan di masa depan berdasarkan \textbf{6 prinsip pemrograman yang baik} melalui penerapan, salah satunya, \textbf{programming design pattern} yang tepat.
+
+\textbf{Metodologi:} Analisis dilakukan dengan mengevaluasi setiap fitur fondasi berdasarkan 6 \textbf{prinsip pemrograman yang baik}, yaitu DRY, KISS, YAGNI, SOLID, Code Readability and Maintainability, serta Proper Documentation and Commenting. Evaluasi dilakukan dengan memberikan \textbf{ penilaian kualitatif} "SANGAT KURANG / KURANG / CUKUP / BAIK / SANGAT BAIK" dan menjelaskan alasan di balik pen ilaian tersebut, termasuk penggunaan \textbf{programming design patterns} yang relevan.
+
+\section{Prinsip Pemrograman yang Baik}
+\subsection{DRY (Don't Repeat Yourself)}
+\textbf{Deskripsi Prinsip:} Menghindari pengulangan kode dengan mengabstraksi fungsi-fungsi yang umum dan dapat digunakan kembali.
+
+\textbf{Pertanyaan Pemandu:}
+\begin{itemize}
+    \item Apakah kode untuk fitur ini menghindari pengulangan?
+    \item Apakah ada fungsi atau kelas yang dapat digunakan kembali untuk mengurangi redundansi?
+\end{itemize}
+
+\subsection{KISS (Keep It Simple, Stupid)}
+\textbf{Deskripsi Prinsip:} Menjaga desain dan implementasi sesederhana mungkin tanpa mengorbankan fungsionalitas.
+
+\textbf{Pertanyaan Pemandu:}
+\begin{itemize}
+    \item Apakah implementasi fitur ini sederhana dan tidak terlalu kompleks?
+    \item Apakah logika kode mudah dipahami?
+\end{itemize}
+
+\subsection{YAGNI (You Aren't Gonna Need It)}
+\textbf{Deskripsi Prinsip:} Hanya mengimplementasikan fitur yang saat ini dibutuhkan, bukan yang mungkin dibutuhkan di masa depan.
+
+\textbf{Pertanyaan Pemandu:}
+\begin{itemize}
+    \item Apakah fitur ini hanya mengimplementasikan kebutuhan saat ini?
+    \item Apakah ada fitur tambahan yang tidak diperlukan saat ini?
+\end{itemize}
+
+\subsection{SOLID Principles}
+\textbf{Deskripsi Prinsip:} SOLID membantu dalam menciptakan sistem yang mudah dipelihara, fleksibel, dan skalabel dengan menerapkan lima prinsip dasar:
+\begin{itemize}
+    \item \textbf{Single Responsibility Principle (SRP):} Setiap kelas harus memiliki satu alasan untuk berubah.
+    \item \textbf{Open/Closed Principle (OCP):} Kelas harus terbuka untuk ekstensi tetapi tertutup untuk modifikasi.
+    \item \textbf{Liskov Substitution Principle (LSP):} Objek dari kelas turunan harus dapat menggantikan objek dari kelas dasar tanpa mengubah kebenaran program.
+    \item \textbf{Interface Segregation Principle (ISP):} Klien tidak harus dipaksa untuk bergantung pada antarmuka yang tidak mereka gunakan.
+    \item \textbf{Dependency Inversion Principle (DIP):} Modul tingkat tinggi tidak boleh bergantung pada modul tingkat rendah; keduanya harus bergantung pada abstraksi.
+\end{itemize}
+
+\textbf{Pertanyaan Pemandu:}
+\begin{itemize}
+    \item Apakah setiap kelas memiliki satu tanggung jawab tunggal? (SRP)
+    \item Apakah kelas dapat diperluas tanpa perlu dimodifikasi? (OCP)
+    \item Apakah objek dari kelas turunan dapat menggantikan objek dari kelas dasar tanpa mengubah kebenaran program? (LSP)
+    \item Apakah antarmuka dipisahkan agar klien tidak bergantung pada metode yang tidak mereka gunakan? (ISP)
+    \item Apakah modul tingkat tinggi dan rendah bergantung pada abstraksi, bukan pada implementasi konkret? (DIP)
+\end{itemize}
+
+\subsection{Code Readability and Maintainability}
+\textbf{Deskripsi Prinsip:} Menulis kode yang mudah dibaca dan dipahami oleh pengembang lain, termasuk penggunaan penamaan yang konsisten dan struktur kode yang rapi.
+
+\textbf{Pertanyaan Pemandu:}
+\begin{itemize}
+    \item Apakah kode mudah dibaca dan dipahami?
+    \item Apakah penamaan variabel dan metode konsisten dan deskriptif?
+\end{itemize}
+
+\subsection{Proper Documentation and Commenting}
+\textbf{Deskripsi Prinsip:} Menyediakan dokumentasi yang jelas dan komentar yang relevan dalam kode untuk menjelaskan logika dan tujuan bagian tertentu.
+
+\textbf{Pertanyaan Pemandu:}
+\begin{itemize}
+    \item Apakah ada dokumentasi yang jelas untuk setiap fitur?
+    \item Apakah komentar dalam kode menjelaskan bagian yang kompleks atau penting?
+\end{itemize}
+
+\section{Programming Design Pattern}
+\textbf{Deskripsi Section:} Section ini memberikan panduan singkat mengenai beberapa design patterns yang umum digunakan dalam pengembangan perangkat lunak. Design patterns ini seringkali membantu dalam menerapkan prinsip-prinsip pemrograman yang baik dengan lebih efektif.
+
+\subsection{Singleton Pattern}
+\textbf{Deskripsi:} Memastikan bahwa sebuah kelas hanya memiliki satu instance dan menyediakan akses global ke instance tersebut.
+
+\subsection{Factory Pattern}
+ \textbf{Deskripsi:} Menyediakan antarmuka untuk membuat objek dalam sebuah kelas induk, tetapi memungkinkan subclass untuk memutuskan kelas mana yang akan diinstansiasi.
+
+\subsection{Observer Pattern}
+\textbf{Deskripsi:} Mendefinisikan satu-ke-banyak dependensi antara objek sehingga ketika satu objek berubah, semua dependensinya diberitahu dan diperbarui secara otomatis.
+
+\subsection{Strategy Pattern}
+\textbf{Deskripsi:} Mendefinisikan keluarga algoritma, mengenkapsulasi masing-masing algoritma, dan membuatnya dapat dipertukarkan. Strategy memungkinkan algoritma bervariasi tanpa mengubah kode klien.
+
+\subsection{Command Pattern}
+\textbf{Deskripsi:} Mengubah permintaan menjadi objek yang berisi informasi tentang permintaan tersebut. Command Pattern memungkinkan parameterisasi objek berdasarkan permintaan.
+
+\subsection{Decorator Pattern}
+\textbf{Deskripsi:} Menambahkan tanggung jawab baru ke objek secara dinamis tanpa mengubah struktur objek.
+
+\subsection{Composite Pattern}
+\textbf{Deskripsi:} Mengkomposisi objek-objek menjadi struktur pohon untuk mewakili hierarki bagian-keseluruhan. Composite memungkinkan klien untuk berinteraksi dengan objek individu dan kumpulan objek secara seragam.
+
+\subsection{MVC (Model-View-Controller) Pattern}
+\textbf{Deskripsi:} Memisahkan aplikasi menjadi tiga komponen utama: Model (data), View (antarmuka pengguna), dan Controller (logika aplikasi). MVC membantu dalam pengorganisasian kode dan pemisahan tanggung jawab.
+
+\subsection{MVP (Model-View-Presenter) Pattern}
+\textbf{Deskripsi:} Mirip dengan MVC, tetapi Presenter bertindak sebagai mediator antara Model dan View, menangani logika presentasi dan interaksi pengguna secara lebih terstruktur.
+
+\section{Evaluasi Fitur Fondasi}
+\textbf{Catatan Penting:} Evaluasi aspek positif dan negatif dilakukan berdasarkan 6 prinsip pemrograman yang baik di atas. Kelompok analisis diminta untuk mengevaluasi masing-masing fitur fondasi (Sistem Karakter, Sistem Musuh, Sistem Pertarungan, Sistem Inventori, Sistem Level Up, dan Sistem Pengaturan Game) berdasarkan prinsip-prinsip yang relevan. Evaluasi harus mencakup aspek positif dan negatif menggunakan kriteria penilaian "SANGAT KURANG/CUKUP/BAIK/SANGAT BAIK" dan penjelasan singkat yang mendasari penilaian tersebut, termasuk penggunaan design patterns yang relevan.
+
+\subsection{Sistem Karakter}
+\textbf{Deskripsi Fitur:} Sistem Karakter memungkinkan pemain untuk membuat dan mengelola karakter utama mereka, termasuk atribut dasar seperti nama, kesehatan, dan level.
+
+\textbf{Evaluasi:}
+\begin{itemize}
+    \item \textbf{Prinsip yang Relevan:} DRY, Singleton Pattern, Code Readability and Maintainability
+    \item \textbf{Aspek Positif:}
+    \begin{itemize}
+        \item \textbf{DRY:} Kode untuk atribut karakter tidak diulang-ulang. Contohnya, penggunaan kelas `Character` yang mendefinisikan atribut dasar.
+        \item \textbf{Singleton Pattern:} Penerapan Singleton Pattern pada kelas `CharacterManager` memastikan bahwa hanya ada satu instance karakter utama, memisahkan manajemen karakter dari logika permainan lainnya.
+        \item \textbf{Code Readability and Maintainability:} Penamaan variabel dan metode jelas dan konsisten, memudahkan pemahaman kode.
+    \end{itemize}
+    \item \textbf{Aspek Negatif:}
+    \begin{itemize}
+        \item \textbf{Code Readability and Maintainability:} Pengelolaan atribut tambahan seperti kekuatan serangan dan pertahanan belum diimplementasikan, sehingga kurang mendukung pertumbuhan karakter.
+    \end{itemize}
+    \item \textbf{Penilaian Kualitatif:} Baik
+    \item \textbf{Alasan Penilaian:} Sistem Karakter telah mengikuti prinsip DRY dan SRP dengan baik melalui penggunaan Singleton Pattern pada `CharacterManager`, serta memiliki kode yang mudah dibaca dan dipelihara. Namun, masih ada ruang untuk penambahan atribut yang lebih kompleks.
+\end{itemize}
+
+\subsection{Sistem Musuh}
+\textbf{Deskripsi Fitur:} Sistem Musuh mengelola berbagai tipe musuh yang dapat ditemui pemain, masing-masing dengan atribut kesehatan dan kemampuan serangan yang berbeda.
+
+\textbf{Evaluasi:}
+\begin{itemize}
+    \item \text {Prinsip yang Relevan:} SOLID (LSP, ISP), Factory Pattern, DRY
+    \item \textbf{Aspek Positif:}
+    \begin{itemize}
+        \item \textbf{SOLID (LSP):} Penggunaan pewarisan memungkinkan pembuatan berbagai tipe musuh tanpa duplikasi kode.
+        \item \textbf{SOLID (ISP):} Antarmuka terpisah untuk serangan musuh, memastikan bahwa klien tidak bergantung pada metode yang tidak digunakan.
+        \item \textbf{DRY:} Tidak ada pengulangan kode dalam kelas-kelas musuh karena semua atribut dan metode dasar diatur oleh kelas `Enemy`.
+        \item \textbf{Factory Pattern:} Penerapan Factory Pattern pada `EnemyFactory` untuk membuat instansi musuh yang berbeda berdasarkan tipe yang diinginkan, mendukung prinsip OCP dan DRY.
+    \end{itemize}
+    \item \textbf{Aspek Negatif:}
+    \begin{itemize}
+        \item \textbf{SOLID (LSP):} Perilaku musuh dalam pertarungan masih terbatas, tidak mencakup strategi serangan yang variatif.
+    \end{itemize}
+    \item \textbf{Penilaian Kualitatif:} Cukup
+    \item \textbf{Alasan Penilaian:} Sistem Musuh telah menerapkan prinsip SOLID dan DRY dengan baik melalui penggunaan pewarisan dan Factory Pattern. Namun, masih perlu pengembangan lebih lanjut dalam hal diversifikasi perilaku musuh untuk meningkatkan kompleksitas dan tantangan dalam permainan.
+\end{itemize}
+
+\subsection{Sistem Pertarungan}
+\textbf{Deskripsi Fitur:} Sistem Pertarungan mengatur interaksi antara pemain dan musuh, termasuk pilihan aksi seperti menyerang atau menggunakan item.
+
+\textbf{Evaluasi:}
+\begin{itemize}
+    \item \textbf{Prinsip yang Relevan:} KISS, SOLID (OCP), Strategy Pattern
+    \item \textbf{Aspek Positif:}
+    \begin{itemize}
+        \item \textbf{KISS:} Implementasi sederhana dan mudah dipahami, mengikuti prinsip KISS.
+        \item \textbf{SOLID (OCP):} Kelas `BattleSystem` dapat diperluas dengan menambahkan aksi baru tanpa perlu mengubah kelas yang ada.
+        \item \textbf{Strategy Pattern:} Penerapan Strategy Pattern pada tindakan pertarungan memungkinkan penambahan strategi baru tanpa mengubah kelas `BattleSystem`.
+    \end{itemize}
+    \item \textbf{Aspek Negatif:}
+    \begin{itemize}
+        \item \textbf{KISS:} Opsi tindakan pemain masih terbatas, kurang mendukung strategi yang lebih kompleks.
+    \end{itemize}
+    \item \textbf{Penilaian Kualitatif:} Baik
+    \item \textbf{Alasan Penilaian:} Sistem Pertarungan telah menjaga kesederhanaan dan memungkinkan ekstensi sesuai prinsip KISS dan OCP melalui penggunaan Strategy Pattern. Namun, masih memerlukan opsi aksi yang lebih variatif untuk mendukung strategi yang lebih kompleks dalam pertarungan.
+\end{itemize}
+
+\subsection{Sistem Inventori}
+\textbf{Deskripsi Fitur:} Sistem Inventori memungkinkan pemain untuk menyimpan dan menggunakan item seperti potion kesehatan atau senjata.
+
+\textbf{Evaluasi:}
+\begin{itemize}
+    \item \textbf{Prinsip yang Relevan:} DRY, Code Readability and Maintainability, Command Pattern
+    \item \textbf{Aspek Positif:}
+    \begin{itemize}
+        \item \textbf{DRY:} Kode inventori tidak mengulang-ulang, menggunakan metode yang dapat digunakan kembali untuk menambah dan menghapus item.
+        \item \textbf{Code Readability and Maintainability:} Struktur kode yang rapi dan penamaan yang jelas memudahkan pemeliharaan.
+        \item \textbf{Command Pattern:} Penerapan Command Pattern pada penggunaan item memungkinkan tindakan penggunaan item sebagai perintah yang dapat dieksekusi, mendukung prinsip SRP dan meningkatkan fleksibilitas sistem.
+    \end{itemize}
+    \item \textbf{Aspek Negatif:}
+    \begin{itemize}
+        \item \textbf{Code Readability and Maintainability:} Fitur pengelolaan item seperti menggabungkan atau memperbaiki item belum diimplementasikan.
+    \end{itemize}
+    \item \textbf{Penilaian Kualitatif:} Cukup
+    \item \textbf{Alasan Penilaian:} Sistem Inventori sudah mengikuti prinsip DRY dan memiliki kode yang mudah dipelihara. Penerapan Command Pattern pada penggunaan item juga meningkatkan fleksibilitas sistem. Namun, masih kurang dalam hal fungsionalitas tambahan seperti penggabungan atau perbaikan item.
+\end{itemize}
+
+\subsection{Sistem Level Up}
+\textbf{Deskripsi Fitur:} Sistem Level Up memungkinkan pemain untuk meningkatkan level setelah mengalahkan musuh, yang berdampak pada peningkatan atribut seperti kesehatan dan kekuatan serangan.
+
+\textbf{Evaluasi:}
+\begin{itemize}
+    \item \textbf{Prinsip yang Relevan:} SOLID (SRP), Observer Pattern, YAGNI
+    \item \textbf{Aspek Positif:}
+    \begin{itemize}
+        \item \textbf{SOLID (SRP):} Kelas `LevelUpSystem` memiliki satu tanggung jawab tunggal, yaitu mengelola peningkatan level karakter.
+        \item \textbf{YAGNI:} Implementasi fokus pada kebutuhan saat ini tanpa fitur tambahan yang tidak diperlukan.
+        \item \textbf{Observer Pattern}: Penerapan Observer Pattern pada `LevelUpNotifier` memungkinkan sistem lain untuk merespons perubahan level karakter tanpa mengubah kelas `LevelUpSystem`, mendukung prinsip YAGNI dan meningkatkan fleksibilitas.
+    \end{itemize}
+    \item \textbf{Aspek Negatif:}
+    \begin{itemize}
+        \item \textbf{YAGNI:} Peningkatan atribut masih terbatas pada kesehatan dan kekuatan serangan, kurang mendukung pertumbuhan karakter yang lebih kompleks.
+    \end{itemize}
+    \item \textbf{Penilaian Kualitatif:} Cukup
+    \item \textbf{Alasan Penilaian:} Sistem Level Up telah menerapkan prinsip SRP dan YAGNI dengan baik melalui penggunaan Observer Pattern. Namun, masih perlu penambahan atribut untuk mendukung perkembangan karakter yang lebih mendalam.
+\end{itemize}
+
+\subsection{Sistem Pengaturan Game}
+\textbf{Deskripsi Fitur:} Sistem Pengaturan Game memungkinkan pemain untuk menyimpan dan memuat permainan serta mengatur preferensi seperti tingkat kesulitan dan kontrol permainan.
+
+\textbf{Evaluasi:}
+\begin{itemize}
+    \item \textbf{Prinsip yang Relevan:} KISS, Proper Documentation and Commenting, Singleton Pattern
+    \item \textbf{Aspek Positif:}
+    \begin{itemize}
+        \item \textbf{KISS:} Implementasi sederhana dan mudah dipahami, sesuai dengan prinsip KISS.
+        \item \textbf{Proper Documentation and Commenting:} Dokumentasi yang jelas dan komentar yang relevan membantu dalam memahami fungsi pengaturan game.
+        \item \textbf{Singleton Pattern:} Penerapan Singleton Pattern pada kelas `GameSettings` memastikan hanya ada satu instance pengaturan game, mendukung prinsip SRP dan meningkatkan konsistensi pengaturan dalam seluruh aplikasi.
+    \end{itemize}
+    \item \textbf{Aspek Negatif:}
+    \begin{itemize}
+        \item \textbf{Proper Documentation and Commenting:} Fitur konfigurasi pengguna seperti pengaturan kontrol dan tingkat kesulitan masih terbatas dan perlu dikembangkan lebih lanjut.
+    \end{itemize}
+    \item \textbf{Penilaian Kualitatif:} Baik
+    \item \textbf{Alasan Penilaian:} Sistem Pengaturan Game telah menjaga kesederhanaan dan memiliki dokumentasi yang baik melalui penggunaan komentar yang jelas. Penerapan Singleton Pattern pada `GameSettings` juga mendukung prinsip SRP dan memastikan konsistensi pengaturan dalam permainan. Namun, masih memerlukan pengembangan fitur konfigurasi yang lebih komprehensif.
+\end{itemize}
+
+\section{Kesimpulan Analisis}
+\textbf{Ringkasan Temuan:} Secara keseluruhan, implementasi fitur-fitur fondasi dalam laporan proyek RPG Command Line Adventure sudah mencakup aspek-aspek dasar yang diperlukan. Penerapan prinsip pemrograman yang baik seperti DRY, KISS, YAGNI, SOLID, Code Readability, dan Proper Documentation sudah diterapkan dengan baik dalam sebagian besar fitur. Penggunaan design patterns seperti Singleton, Factory, Observer, Strategy, dan Command juga mendukung penerapan prinsip-prinsip tersebut. Namun, beberapa area seperti peningkatan atribut karakter, diversifikasi perilaku musuh, dan pengelolaan inventori masih dapat ditingkatkan untuk memberikan kedalaman yang lebih pada game.
+
+\textbf{Rekomendasi:} 
+\begin{itemize}
+    \item Menambahkan atribut tambahan pada sistem karakter untuk mendukung perkembangan yang lebih kompleks.
+    \item Memperluas perilaku musuh dengan strategi serangan yang lebih variatif untuk meningkatkan tantangan dalam pertarungan.
+    \item Mengembangkan fitur pengelolaan inventori seperti menggabungkan atau memperbaiki item untuk meningkatkan fungsionalitas inventori.
+    \item Menambahkan opsi aksi yang lebih variatif dalam sistem pertarungan untuk mendukung strategi yang lebih kompleks.
+    \item Memperluas fitur konfigurasi pengguna dalam sistem pengaturan game, termasuk pengaturan kontrol dan tingkat kesulitan yang lebih detail.
+\end{itemize}
+
+\end{document}
