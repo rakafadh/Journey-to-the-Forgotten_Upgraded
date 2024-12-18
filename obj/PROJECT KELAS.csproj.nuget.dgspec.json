@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\ITworkerwannabe\\computerengineer\\tugasoopjava\\Kelompok 6 RPG Game!\\Group62DGamesProject2024\\PROJECT KELAS.csproj": {}
+    "E:\\ITworkerwannabe\\computerengineer\\Sem 3\\tugasoopjava\\Kelompok 6 RPG Game!\\Group62DGamesProject2024\\PROJECT KELAS.csproj": {}
   },
   "projects": {
-    "E:\\ITworkerwannabe\\computerengineer\\tugasoopjava\\Kelompok 6 RPG Game!\\Group62DGamesProject2024\\PROJECT KELAS.csproj": {
+    "E:\\ITworkerwannabe\\computerengineer\\Sem 3\\tugasoopjava\\Kelompok 6 RPG Game!\\Group62DGamesProject2024\\PROJECT KELAS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ITworkerwannabe\\computerengineer\\tugasoopjava\\Kelompok 6 RPG Game!\\Group62DGamesProject2024\\PROJECT KELAS.csproj",
+        "projectUniqueName": "E:\\ITworkerwannabe\\computerengineer\\Sem 3\\tugasoopjava\\Kelompok 6 RPG Game!\\Group62DGamesProject2024\\PROJECT KELAS.csproj",
         "projectName": "PROJECT KELAS",
-        "projectPath": "E:\\ITworkerwannabe\\computerengineer\\tugasoopjava\\Kelompok 6 RPG Game!\\Group62DGamesProject2024\\PROJECT KELAS.csproj",
+        "projectPath": "E:\\ITworkerwannabe\\computerengineer\\Sem 3\\tugasoopjava\\Kelompok 6 RPG Game!\\Group62DGamesProject2024\\PROJECT KELAS.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "E:\\ITworkerwannabe\\computerengineer\\tugasoopjava\\Kelompok 6 RPG Game!\\Group62DGamesProject2024\\obj\\",
+        "outputPath": "E:\\ITworkerwannabe\\computerengineer\\Sem 3\\tugasoopjava\\Kelompok 6 RPG Game!\\Group62DGamesProject2024\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -20,7 +20,7 @@ public class Quest
         if (!IsCompleted && completionCriteria(character))
         {
             IsCompleted = true;
-            Console.WriteLine($"Quest Completed: {Name}!");
+            Console.WriteLine($"\nQuest Completed: {Name}!");
             Reward(character);
         }
     }

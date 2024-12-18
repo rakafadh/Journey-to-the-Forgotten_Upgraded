@@ -10,7 +10,7 @@ public class QuestManager
     public void AddQuest(Quest quest)
     {
         activeQuests.Add(quest);
-        Console.WriteLine($"New Quest: {quest.Name} - {quest.Description}");
+        Console.WriteLine($"\nNew Quest: {quest.Name} - {quest.Description}");
     }
 
     public void CheckAllQuests(Character character)

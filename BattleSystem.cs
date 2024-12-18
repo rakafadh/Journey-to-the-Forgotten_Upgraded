@@ -14,7 +14,7 @@ public class BattleSystem
             // Display battle status
             Console.WriteLine($"\n{character.Name} vs {enemy.Name}");
             Console.WriteLine($"Your health: {character.Health}/{character.MaxHealth}, Enemy health: {enemy.Health}/{enemy.Health}");
-            
+
             // Prompt player for action
             Console.WriteLine("Choose an action: ");
             Console.WriteLine("1. Attack");
@@ -22,7 +22,14 @@ public class BattleSystem
             Console.WriteLine("3. Use item");
             Console.WriteLine("4. Run");
 
+            // Show Special Attack option if health is low
+            if (character.Health <= character.MaxHealth * 0.3) // 30% or lower
+            {
+                Console.WriteLine("5. Special Attack");
+            }
+
             string action = Console.ReadLine();
+
             if (action == "1")
             {
                 SetStrategy(new NormalAttackStrategy());
@@ -50,6 +57,11 @@ public class BattleSystem
                     enemy.Attack(character);
                 }
             }
+            else if (action == "5" && character.Health <= character.MaxHealth * 0.3)
+            {
+                SetStrategy(new SpecialAttackStrategy());
+                currentStrategy.Execute(character, enemy);
+            }
             else
             {
                 Console.WriteLine("Invalid option. Please choose again.");
@@ -67,6 +79,7 @@ public class BattleSystem
             Console.WriteLine("Game Over!");
         }
     }
+
 
     private void UseItem(Character character)
     {

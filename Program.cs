@@ -8,7 +8,7 @@
         game.StartNewGame(playerName);
 
         // Add some items to the inventory
-        var sword = new WeaponItem("Sword", "A sharp blade that increases attack.", 10);
+        var sword = new WeaponItem("\nSword", "A sharp blade that increases attack.", 10);
         var shield = new DefenseItem("Shield", "A sturdy shield that increases defense.", 5);
 
         Character.GetInstance().Inventory.AddItem(sword);
